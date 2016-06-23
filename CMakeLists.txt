@@ -50,7 +50,7 @@ endif()
 # Add some gcc-specific command lines.
 if(CMAKE_COMPILER_IS_GNUCC)
     # Always build with debug symbols...you can strip it later.
-    add_definitions(-g -pipe -Werror -fsigned-char)
+    add_definitions(-g -pipe -fsigned-char)
 
     # Stupid BeOS generates warnings in the system headers.
     if(NOT BEOS)
@@ -304,7 +304,7 @@ if(PHYSFS_BUILD_TEST)
         if(READLINE_LIBRARY)
             set(HAVE_SYSTEM_READLINE TRUE)
             set(TEST_PHYSFS_LIBS ${TEST_PHYSFS_LIBS} ${READLINE_LIBRARY} ${CURSES_LIBRARY})
-            include_directories(${READLINE_H} ${HISTORY_H})
+            include_directories(SYSTEM ${READLINE_H} ${HISTORY_H})
             add_definitions(-DPHYSFS_HAVE_READLINE=1)
         endif()
     endif()
